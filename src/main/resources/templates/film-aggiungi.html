@@ -21,7 +21,13 @@
         </div>
         <div>
             <label>Genere</label>
-            <input th:field="*{genere}" type="text" />
+            <select name="genere" th:field="*{genere}">
+                <option value="azione">azione</option>
+                <option value="sci-fi">sci-fi</option>
+                <option value="fantasy">fantasy</option>
+                <option value="horror">horror</option>
+                <option value="commedia">commedia</option>
+            </select>
             <!-- controlli del validator -->
             <div th:if="${#fields.hasErrors('genere')}">
                 <span th:errors="*{genere}" class="text-danger"></span>
@@ -29,7 +35,7 @@
         </div>
         <div>
             <label>Anno</label>
-            <input th:field="*{anno}" type="text" />
+            <input th:field="*{anno}" type="number" />
             <!-- controlli del validator -->
             <div th:if="${#fields.hasErrors('anno')}">
                 <span th:errors="*{anno}" class="text-danger"></span>
@@ -37,7 +43,13 @@
         </div>
         <div>
             <label>Voto</label>
-            <input th:field="*{voto}" type="text" />
+            <select name="voto" th:field="*{voto}">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
             <!-- controlli del validator -->
             <div th:if="${#fields.hasErrors('voto')}">
                 <span th:errors="*{voto}" class="text-danger"></span>
@@ -47,7 +59,7 @@
         <div>
             <input class="btn btn-success" type="submit" value="Invia"/>
             <input class="btn btn-secondary" type="reset" value="Svuota"/>
-            <a href="@{/films}" class="btn btn-primary">Indietro</a>
+            <a th:href="@{/films}" class="btn btn-primary">Indietro</a>
         </div>
     </form>
 

@@ -26,7 +26,7 @@
 
     <div th:object="${film}">
         <a th:href="@{'/films?delete='+${film.codice}}">Elimina il film</a>
-        <a href="@{/films}" class="btn btn-primary">Indietro</a>
+        <a th:href="@{/films}" class="btn btn-primary">Indietro</a>
     </div>
     
 </body>
