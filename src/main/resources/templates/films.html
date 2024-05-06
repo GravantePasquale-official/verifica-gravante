@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film</title>
+</head>
+
+<body>
+    <h1>I tuoi film</h1>
+    <table>
+        <tr>
+            <th>Codice</th>
+            <th>Titolo</th>
+            <th>Genere</th>
+            <th>Anno</th>
+            <th>Voto</th>
+        </tr>
+        <tr th:each="film : ${films}">
+            <td th:text="${film.codice}"></td>
+            <td th:text="${film.titolo}"></td>
+            <td th:text="${film.genere}"></td>
+            <td th:text="${film.anno}"></td>
+            <td th:text="${film.voto}"></td>
+        </tr>
+    </table>
+</body>
+
+</html>
