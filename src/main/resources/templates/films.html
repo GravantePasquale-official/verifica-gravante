@@ -5,11 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Film</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <h1>I tuoi film</h1>
-    <table th:if="${!films.isEmpty()}">
+    <form method="get" th:action="@{'/films?filtro='+${filtro.filtro}}" th:object="${filtro}">
+        <label for="filtro">Filtro</label>
+        <input name="filtro" th:field="*{filtro}" type="text">
+        <input class="btn btn-success" type="submit" value="Invia"/>
+    </form>
+    <table th:if="${!films.isEmpty()}" class="table table-dark">
         <tr>
             <th>Codice</th>
             <th>Titolo</th>
@@ -24,13 +31,13 @@
             <td th:text="${film.genere}"></td>
             <td th:text="${film.anno}"></td>
             <td th:text="${film.voto}"></td>
-            <td><a th:href="@{'/films?delete='+${film.codice}}">X</a></td>
+            <td><a th:href="@{'/films?delete='+${film.codice}}" class="btn btn-danger">X</a></td>
         </tr>
     </table>
 
     <div th:if="${films.isEmpty()}">Non hai film, aggiungine uno!</div>
-
-    <a th:href="@{/films/nuovo}">Aggiungi film</a>
+    <div th:if="${films.isEmpty()}">Non hai film, aggiungine uno!</div>
+    <a th:href="@{/films/nuovo}" class="btn btn-primary">Aggiungi film</a>
 </body>
 
 </html>

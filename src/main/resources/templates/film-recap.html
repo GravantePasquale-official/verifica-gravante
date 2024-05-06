@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Film Recap</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <h1>Recap del film</h1>
-    <table>
+    <table class="table table-dark">
         <tr>
             <th>Codice</th>
             <th>Titolo</th>
@@ -25,7 +28,7 @@
     </table>
 
     <div th:object="${film}">
-        <a th:href="@{'/films?delete='+${film.codice}}">Elimina il film</a>
+        <a th:href="@{'/films?delete='+${film.codice}}" class="btn btn-danger">Elimina il film</a>
         <a th:href="@{/films}" class="btn btn-primary">Indietro</a>
     </div>
     

@@ -1,6 +1,7 @@
 package it.gravante.gravante.controllers;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import it.gravante.gravante.domains.Film;
 import it.gravante.gravante.domains.FilmForm;
+import it.gravante.gravante.domains.Filtro;
 import it.gravante.gravante.services.FilmService;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
@@ -34,7 +36,7 @@ public class FilmController {
     @GetMapping()
     public ModelAndView mostraFilm() {
         List<Film> films = filmService.findAll();
-        return new ModelAndView("films").addObject("films", films);
+        return new ModelAndView("films").addAllObjects(Map.of("films", films, "filtro", new Filtro()));
     }
 
     @GetMapping("/nuovo")
@@ -72,6 +74,17 @@ public class FilmController {
 
         return new ModelAndView("redirect:/films");
     }
+
+    @GetMapping(params = "filtro")
+    public ModelAndView filtraFilm(@RequestParam String filtro) {
+        if(filtro==null || filtro.isEmpty() || filtro.isBlank())
+            return new ModelAndView("redirect:/films");
+
+        List<Film> films = filmService.findByTitolo(filtro);
+        return new ModelAndView("films").addAllObjects(Map.of("films", films, "filtro", new Filtro()));
+
+    }
+
     
     
     

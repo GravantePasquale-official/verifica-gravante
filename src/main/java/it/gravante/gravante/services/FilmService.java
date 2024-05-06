@@ -31,6 +31,16 @@ public class FilmService {
         filmRepo.deleteById(codice);
     }
 
+    public List<Film> findByTitolo(String titolo){
+        List<Film> films = filmRepo.findAll();
+        for(int i=films.size()-1; i>=0; i--){
+            if(!films.get(i).getTitolo().contains(titolo))
+                films.remove(i);
+        }
+
+        return films;
+    }
+
     private Film map(FilmForm ff){
         Film film = new Film();
 
